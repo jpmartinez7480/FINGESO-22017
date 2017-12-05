@@ -132,26 +132,7 @@
                             </div>
                             <br>
                         </div>
-					<!--
-                                            <div class = "row">
-						<div class = "col-sm-8">
-                                                    <div class = "col-sm-4">
-							<p>Semestre</p>
-                                                    </div>
-                                                    <div class = "col-sm-4">
-							<label class = "radio-inline"><input type = "radio" name = "iptradio">I</label>
-                                                    </div>
-                                                    <div class = "col-sm-4">
-							<label class = "radio-inline"><input type = "radio" name = "iptradio">II</label>
-                                                    </div>
-                                                   
-						</div>
-                                            </div>
-                                            
-                                            
-                                            <hr>
-                                        
-					<hr>-->                
+			            
                     </div>
                 </div>
             </div>

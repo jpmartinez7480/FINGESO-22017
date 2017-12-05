@@ -24,9 +24,18 @@ public class Controlador_Compromiso {
         FileWriter file = new FileWriter("C:\\Users\\JuanPablo\\Desktop\\FINGESO\\FINGESO_22017\\web\\"+nombre+"_Compromiso_"+tipo+"_"+date+".txt");
         PrintWriter pw = new PrintWriter(file);
         for (Compromiso comp : compromisos) {
-            pw.println(comp.getNombreActividad()+";"+comp.getHorasSemanales()+";"+comp.getHorasSemestrales());
+            pw.println(comp.getNombreActividad()+";"+comp.getHorasSemanales()+";"+comp.getHorasSemestrales()+";"+comp.getTipo()+";"+comp.getAnno());
         }
         file.close();
+    }
+    
+    public void comentarCompromiso(String nombreArchivo, String comentarios) throws IOException
+    {
+        try (FileWriter file = new FileWriter("C:\\Users\\JuanPablo\\Desktop\\FINGESO\\FINGESO_22017\\web\\"+nombreArchivo+".txt")) {
+            PrintWriter pw = new PrintWriter(file);
+            pw.println(comentarios);
+            file.close();
+        }
     }
     
 }

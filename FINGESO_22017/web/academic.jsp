@@ -43,6 +43,7 @@
                         <li><a href ="#">Agregar Actividad</a></li>
                     </ul>
                 </li>
+                <li ><a href="evaluacionAcademico.jsp">Evaluaciones</a></li>
       		<li ><a href="#">Publicaciones</a></li>
             </ul>
 

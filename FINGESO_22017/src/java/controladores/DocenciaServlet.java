@@ -47,7 +47,7 @@ public class DocenciaServlet extends HttpServlet {
             String[] hsemestrales = request.getParameterValues("hsemestral[]");
           
             for(int i = 0; i < cursos.length; i++){
-                Compromiso c = new Compromiso(cursos[i],hsemanales[i],hsemestrales[i]);
+                Compromiso c = new Compromiso(cursos[i],hsemanales[i],hsemestrales[i],"Docencia",anno);
                 compromisos.add(c);
             }
             Controlador_Compromiso cc = new Controlador_Compromiso();

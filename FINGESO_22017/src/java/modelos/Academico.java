@@ -5,6 +5,7 @@
  */
 package modelos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Academico {
     String cargo;
     String email;                         
     String grade;
+    ArrayList<Compromiso> compromiso;
     
     public Academico(String f, String l, String c, String e,String g){
         this.first_name = f;
@@ -32,6 +34,10 @@ public class Academico {
     
     public void set_last_name(String last){
         this.last_name = last;
+    }
+    
+    public void set_compromiso(Compromiso c){
+        this.compromiso.add(c);
     }
     
     public String get_first_name(){
@@ -53,5 +59,11 @@ public class Academico {
     public String get_cargo(){
         return this.cargo;
     }
+    
+    public Compromiso get_compromiso(int index){
+        return this.compromiso.get(index);
+    }
+    
+    
     
 }

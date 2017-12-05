@@ -7,19 +7,16 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import modelos.Compromiso;
 
 /**
  *
  * @author JuanPablo
  */
-public class AdminServlet extends HttpServlet {
+public class evaluarAcademicoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,23 +28,33 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if(request.getParameter("btnGuardar")!=null){
-            ArrayList<Compromiso> compromisos = new ArrayList();
-            String anno = request.getParameter("anno");
-            String[] actv = request.getParameterValues("actv[]");
-            String[] hsemanales = request.getParameterValues("hsemanal[]");
-            String[] hsemestrales = request.getParameterValues("hsemestral[]");
-          
-            for(int i = 0; i < actv.length; i++){
-                Compromiso c = new Compromiso(actv[i],hsemanales[i],hsemestrales[i],"Administrativo",anno);
-                compromisos.add(c);
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        
+        String nombreArchivo1 = "Victor Parada_comentarios_2018_docente";
+        String nombreArchivo2 = "Victor Parada_comentarios_2018_admin";
+        String comentarioDocente;
+        String comentarioAdmin;
+        if(request.getParameter("btn_reject_d")!=null){
             Controlador_Compromiso cc = new Controlador_Compromiso();
-            Object o = session.getAttribute("user");
-            String a = (String) o;
-            cc.crearCompromiso(compromisos,a,"Administrativo",anno);
-            response.sendRedirect("academic.jsp");
+            comentarioDocente = request.getParameter("comment_docente");
+            cc.comentarCompromiso(nombreArchivo1, comentarioDocente);
+            response.sendRedirect("dir_conv_academico.jsp");
+        }
+        else if(request.getParameter("btn_reject_a")!=null){
+            Controlador_Compromiso cc = new Controlador_Compromiso();
+            comentarioAdmin = request.getParameter("comment_admin");
+            cc.comentarCompromiso(nombreArchivo2, comentarioAdmin);
+            response.sendRedirect("dir_conv_academico.jsp");
+        }
+        else if(request.getParameter("btn_accept_d")!=null){
+            Controlador_Compromiso cc = new Controlador_Compromiso();
+            cc.comentarCompromiso(nombreArchivo1,"aceptado");
+            response.sendRedirect("dir_conv_academico.jsp");
+        }
+        else if(request.getParameter("btn_accept_a")!=null){
+            Controlador_Compromiso cc = new Controlador_Compromiso();
+            cc.comentarCompromiso(nombreArchivo2, "aceptado");
+            response.sendRedirect("dir_conv_academico.jsp");
         }
     }
 

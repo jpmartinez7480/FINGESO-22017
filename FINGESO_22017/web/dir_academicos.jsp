@@ -4,6 +4,7 @@
     Author     : JuanPablo
 --%>
 
+
 <%@page import="controladores.Controlador_usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelos.Academico"%>
@@ -34,7 +35,6 @@
       		<li><a href="director.jsp">Home</a></li>
       		<li class="active"><a href="#">Académicos</a></li>
       		<li><a href="#">Evaluaciones</a></li>
-      		<li ><a href="#">Registrar Académico</a></li>
             </ul>
 
             <ul class = "nav navnar-nav navbar-right">
@@ -55,7 +55,7 @@
 					<th>Nombres</th>
 					<th>Apellidos</th>
 					<th>Email</th>
-                                        <th>Cargo</th>
+                                        <th>Informe</th>
 					<th>Calificación</th>
                                     </tr>
 				</thead>
@@ -70,7 +70,13 @@
                                                     <td><%=a.get_first_name()%></td>
                                                     <td><%=a.get_last_name()%></td>
                                                     <td><%=a.get_email()%></td>
-                                                    <td><%=a.get_cargo()%></td>
+                                                    <!--<td class = "boton"><input type = "submit" value = "Ver informe" name = "info"></td>-->
+                                                    <!--<td>
+                                                        <form method ="post" action ="dirCompromisoServlet">
+                                                            <input type = "submit" name = "see" class = "btn btn-sucess btn-xs btn-block" value = "ver informe">
+                                                       </form>
+                                                    </td>--> 
+                                                    <td><a href ="dir_conv_academico.jsp">ver informe</a></td>
                                                     <td><%=a.get_grade()%></td>
                                                 </tr>
                                         <%
@@ -90,4 +96,25 @@
 	</footer>
 
 </body>
+
+<script>
+    $(document).ready(function(){
+        $('.boton').click(function(){
+    
+        var datos = "";
+        $(this).parents("tr").find("td").each(function(){
+           datos+=$(this).html()+";"; 
+        });
+        
+        var academico = datos.split(";");
+        console.log(academico);
+        $.ajax({
+                type:'POST',
+                url:'/FINGESO_22017/dirCompromisoServlet',
+                data:{'name': academico[0]}
+           
+             });
+        });
+});
+</script>
 </html>

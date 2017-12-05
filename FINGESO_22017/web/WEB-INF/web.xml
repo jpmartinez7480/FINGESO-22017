@@ -16,6 +16,14 @@
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>controladores.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>dirCompromisoServlet</servlet-name>
+        <servlet-class>controladores.dirCompromisoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>evaluarAcademicoServlet</servlet-name>
+        <servlet-class>controladores.evaluarAcademicoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesionServlet</servlet-name>
         <url-pattern>/IniciarSesionServlet</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dirCompromisoServlet</servlet-name>
+        <url-pattern>/dirCompromisoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>evaluarAcademicoServlet</servlet-name>
+        <url-pattern>/evaluarAcademicoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

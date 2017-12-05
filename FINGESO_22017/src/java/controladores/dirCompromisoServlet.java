@@ -7,19 +7,22 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelos.Compromiso;
 
 /**
  *
  * @author JuanPablo
  */
-public class AdminServlet extends HttpServlet {
+@WebServlet (name = "dirCompromisoServlet",urlPatterns = {"/dirCompromisoServlet"})
+public class dirCompromisoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,26 +34,17 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if(request.getParameter("btnGuardar")!=null){
-            ArrayList<Compromiso> compromisos = new ArrayList();
-            String anno = request.getParameter("anno");
-            String[] actv = request.getParameterValues("actv[]");
-            String[] hsemanales = request.getParameterValues("hsemanal[]");
-            String[] hsemestrales = request.getParameterValues("hsemestral[]");
-          
-            for(int i = 0; i < actv.length; i++){
-                Compromiso c = new Compromiso(actv[i],hsemanales[i],hsemestrales[i],"Administrativo",anno);
-                compromisos.add(c);
-            }
-            Controlador_Compromiso cc = new Controlador_Compromiso();
-            Object o = session.getAttribute("user");
-            String a = (String) o;
-            cc.crearCompromiso(compromisos,a,"Administrativo",anno);
-            response.sendRedirect("academic.jsp");
-        }
+            
+            
+            response.sendRedirect("dir_conv_academico.jsp");
+            
+            /*if(request.getParameter("name")!=null){
+                String academico = request.getParameter("name");
+                LOG.log(Level.INFO,academico);
+                response.sendRedirect("dir_conv_academico.jsp");
+            }*/
     }
-
+    private static final Logger LOG = Logger.getLogger(dirCompromisoServlet.class.getName());
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -64,6 +58,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+       
     }
 
     /**

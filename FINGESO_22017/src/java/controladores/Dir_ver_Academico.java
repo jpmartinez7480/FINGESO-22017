@@ -21,22 +21,15 @@ import modelos.Academico;
  */
 public class Dir_ver_Academico extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+    
+        String nombre = request.getParameter("name");
+        System.out.print(nombre);
+        request.setAttribute("academico", nombre);
+        response.sendRedirect("dir_conv_academico.jsp");
         
-        
-        
-        
- 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

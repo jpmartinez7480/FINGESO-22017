@@ -16,6 +16,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import modelos.Academico;
+import modelos.Compromiso;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Controlador_usuario {
             Academico a = new Academico(aux[0],aux[1],aux[2],aux[3],aux[4]);
             academicos.add(a);
         }
-        
+        file.close();
         return (ArrayList) (academicos);
     }
     
@@ -47,6 +48,35 @@ public class Controlador_usuario {
         return -1;
     }
     
+    public ArrayList<Compromiso> obtenerCompromisos(String nombreArchivo) throws FileNotFoundException, IOException
+    {
+        ArrayList<Compromiso> compromisos = new ArrayList();
+        String cadena;
+        FileReader file = new FileReader("C:\\Users\\JuanPablo\\Desktop\\FINGESO\\FINGESO_22017\\web\\"+nombreArchivo+".txt");
+        BufferedReader b = new BufferedReader(file);
+        while((cadena = b.readLine())!=null){
+            String[] aux = cadena.trim().split(";");
+            Compromiso c = new Compromiso(aux[0],aux[1],aux[2],aux[3],aux[4]);
+            compromisos.add(c);
+        }
+        file.close();
+        return (ArrayList) (compromisos);
+    }
+    
+    public ArrayList<String> obtenerCompromisoComentado(String nombreArchivo) throws FileNotFoundException, IOException
+    {
+        ArrayList<String> comentarios = new ArrayList();
+        String cadena;
+        String aux;
+        FileReader file = new FileReader("C:\\Users\\JuanPablo\\Desktop\\FINGESO\\FINGESO_22017\\web\\"+nombreArchivo+".txt");
+        BufferedReader b = new BufferedReader(file);
+        while((cadena = b.readLine())!=null){
+            aux = cadena.trim();
+            comentarios.add(aux);
+        }
+        file.close();
+        return (ArrayList) (comentarios);
+    }
     
     
 }
